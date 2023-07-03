@@ -12,42 +12,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title></title>
 </head>
 <body>
-    <a href="<?= SITE_URL ?>/proses/logout.php">Logout</a>
-    <h1>Manajemen Tiket</h1>
-
-    <!-- navigasi -->
-    <a href="<?= SITE_URL ?>/admin/">Home</a> 
-    <a href="<?= SITE_URL ?>/admin/paket/">Paket</a>
-    <a href="<?= SITE_URL ?>/admin/tiket/">Tiket</a>
-    <a href="<?= SITE_URL ?>/admin/verif_paket/">Verifikasi Paket</a>
-    <a href="<?= SITE_URL ?>/admin/verif_tiket/">Verifikasi Tiket</a>
-    <a href="<?= SITE_URL ?>/admin/penarikan/">Penarikan</a>
-    <a href="<?= SITE_URL ?>/admin/laporan/">Laporan</a>
-    <br/><br/>
-
-    <form action="proses/create.php" method="post">
-        <label for="judul_tiket">Tiket : </label>
-        <input type="text" name="judul_tiket" id="judul_tiket">
-        <br/>
-        <label for="stok">Stok : </label>
-        <input type="number" name="stok" id="stok">
-        <br/>
-        <label for="harga">Harga : </label>
-        <input type="number" name="harga" id="harga">
-        <br/>
-        <label for="lokasi">Lokasi : </label>
-        <textarea name="lokasi" id="lokasi" cols="30" rows="10"></textarea>
-        <br/>
-        <label for="tanggal_akhir">Tanggal Berakhir : </label>
-        <input type="date" name="tanggal_akhir" id="tanggal_akhir">
-        <br/>
-        <input type="submit" value="Submit" name="btn-submit"/>
-        <br/><br/>
-    </form>
-
     <table border="1px" width="70%">
         <thead>
             <tr>
@@ -67,6 +34,7 @@
             $i = 1;
             $query = $conn->query("SELECT tb_tiket.* FROM tb_tiket WHERE status <> '0'");
             while($rows = $query->fetch_assoc()):
+            $user = $conn->query("SELECT * FROM tb_pengguna WHERE id_pengguna = '".$rows['id_pengguna']."'")->fetch_assoc();
         ?>
             <tr>
                 <td><?= $i++; ?></td>
@@ -77,9 +45,7 @@
                 <td><?= $rows['harga'] ?></td>
                 <td><?= $rows['lokasi'] ?></td>
                 <td>
-                    <?php if($rows['id_pengguna'] == 0) :?> Admin
-                    <?php else :?> User
-                    <?php endif; ?>
+                    <?= $user['nama_pengguna'] ?>
                 </td>
                 <td>Edit | Hapus</td>
             </tr>  

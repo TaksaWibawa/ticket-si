@@ -15,47 +15,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title></title>
+    <link
+      href="../../assets/css/packet.css"
+      rel="stylesheet"
+    />
+    <script src="js/dashboard.js"></script>
 </head>
 <body>
-    <a href="<?= SITE_URL ?>/proses/logout.php">Logout</a>
-    <h1>Beli Paket</h1>
-
-    <a href="<?= SITE_URL ?>/general/">Home</a> | 
-    <a href="<?= SITE_URL ?>/general/paket/">Beli Paket</a> | 
-    <a href="<?= SITE_URL ?>/general/tiket/">Manajemen Tiket</a> | 
-    <a href="<?= SITE_URL ?>/general/laporan/index.php">Laporan</a>
-    <br/><br/>
-
-    <table border="1px" width="70%">
-        <thead>
-            <tr>
-                <th>Paket</th>
-                <th>Harga</th>
-                <th>Tiket Basic</th>
-                <th>Tiket Gold</th>
-                <th>Deskripsi</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php
-            $query = $conn->query("SELECT * FROM tb_paket");
-            while($rows = $query->fetch_assoc()):
-        ?>
-            <tr>
-                <td><?= $rows['nama_paket'] ?></td>
-                <td><?= $rows['harga'] ?></td>
-                <td><?= $rows['up_basic'] ?></td>
-                <td><?= $rows['up_gold'] ?></td>
-                <td><?= $rows['deskripsi'] ?></td>
-                <td>
-                    <a href="./beli.php?id=<?= $rows['id_paket'] ?>">Beli</a>
-                </td>
-            </tr>  
-        <?php endwhile; ?>
-        </tbody>
-    </table>
-
+    <div class="content-section" id="paket">
+        <div class="cards-container">
+            <?php
+                $query = $conn->query("SELECT * FROM tb_paket");
+                while($rows = $query->fetch_assoc()):
+                    echo "<div class='card'>";
+                    echo "<h3 class='card-title'>" . $rows['nama_paket'] . "</h3>";
+                    echo "<p class='card-description'>" . $rows['deskripsi'] . "</p>";
+                    echo "<p class='card-description'> Jumlah Tiket Basic" . str_repeat('&nbsp;', 1). ": " . $rows['up_basic'] . "</p>";
+                    echo "<p class='card-description'> Jumlah Tiket Gold" . str_repeat('&nbsp;', 2). ": " . $rows['up_gold'] . "</p>";
+                    echo "<div class='card-footer'>";
+                    echo "<span class='card-price'>Harga : Rp" . $rows['harga'] . "</span>";
+                    echo "<a href='paket/beli.php?id=" . $rows['id_paket'] . "' class='card-button'>Pilih Paket</a>";
+                    echo "</div>";
+                    echo "</div>";
+                endwhile;
+            ?>
+        </div>
+    </div>
 </body>
 </html>

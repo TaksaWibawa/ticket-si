@@ -1,48 +1,55 @@
-<?php 
+<?php
 
-	require_once "../config/Database.php";
+require_once '../config/Database.php';
 
-	if (isset($_POST['btn-submit'])) {
+function redirectWithAlert($location, $status, $message) {
+    $location .= '?alert=' . $status . '&message=' . urlencode($message);
+    header('Location: ' . $location);
+    exit();
+}
 
-		$username = mysqli_real_escape_string($conn, $_POST['username']);
-		$password = mysqli_real_escape_string($conn, $_POST['password']);
-		$nama_pengguna = mysqli_real_escape_string($conn, $_POST['nama_pengguna']);
-		$telp = mysqli_real_escape_string($conn, $_POST['telp']);
-		$alamat = mysqli_real_escape_string($conn, $_POST['alamat']);
+if (isset($_POST['btn-submit'])) {
 
-		if (!empty($username) && !empty($password) && !empty($nama_pengguna) && !empty($telp) && !empty($alamat)) {
-			
-			if (trim($username) && trim($password)) {
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
+    $nama_pengguna = mysqli_real_escape_string($conn, $_POST['nama_pengguna']);
+    $telp = mysqli_real_escape_string($conn, $_POST['telp']);
+    $alamat = mysqli_real_escape_string($conn, $_POST['alamat']);
 
-				$total = $conn->query("SELECT * FROM tb_akun WHERE username = '$username'")->num_rows;
+    if (!empty($username) && !empty($password) && !empty($nama_pengguna) && !empty($telp) && !empty($alamat)) {
 
-				if ($total == 0) {
+        if (trim($username) && trim($password)) {
 
-                    $password_hash = password_hash($password, PASSWORD_DEFAULT, ['cost' => 10]);
+            $total = $conn->query("SELECT * FROM tb_akun WHERE username = '$username'")->num_rows;
 
-                    $query = $conn->query("INSERT INTO tb_akun VALUES('', '$username', '$password_hash', '1')");
-					die();
-                    if ($query) {
-                        $id_akun = $conn->query("SELECT id_akun FROM tb_akun WHERE username = '$username'")->fetch_assoc()['id_akun'];
-						$query = $conn->query("INSERT INTO tb_pengguna VALUES('', '$nama_pengguna', '$telp', '$alamat', '0', '0', '$id_akun')");
-						
-						alert('../login.php', 'BERHASIL', 'Berhasil Registrasi', 'success');
-                    } else {
-                        alert('../registrasi.php', 'GAGAL', 'Ada yang salah!', 'error');
-                    }
-										
-				} else {
-					alert('../registrasi.php', 'GAGAL', 'Maaf, Username telah digunakan!', 'error');
-				}
+            if ($total == 0) {
 
-			} else {
-				alert('../registrasi.php', 'GAGAL', 'Data tidak boleh kosong!!!', 'warning');
-			}
-			
-		} else {
-			alert('../registrasi.php', 'GAGAL', 'Data tidak boleh kosong!!!', 'warning');
-		}
+                $password_hash = password_hash($password, PASSWORD_DEFAULT, ['cost' => 10]);
 
-	} else {
-		header('location: ../registrasi.php');
-	}
+                $query = $conn->query("INSERT INTO tb_akun VALUES('', '$username', '$password_hash', '1')");
+
+                if ($query) {
+                    $id_akun = $conn->insert_id;
+                    $query = $conn->query("INSERT INTO tb_pengguna VALUES('', '$nama_pengguna', '$telp', '$alamat', '0', '0', '$id_akun')");
+
+                    redirectWithAlert('../login.php', 'success', 'Berhasil Registrasi');
+                } else {
+                    redirectWithAlert('../registrasi.php', 'error', 'Ada yang salah!');
+                }
+
+            } else {
+                redirectWithAlert('../registrasi.php', 'error', 'Maaf, Username telah digunakan!');
+            }
+
+        } else {
+            redirectWithAlert('../registrasi.php', 'warning', 'Data tidak boleh kosong!!!');
+        }
+
+    } else {
+        redirectWithAlert('../registrasi.php', 'warning', 'Data tidak boleh kosong!!!');
+    }
+
+} else {
+    header('Location: ../registrasi.php');
+    exit();
+}

@@ -35,10 +35,14 @@
           <div class="navbar-nav ms-auto">
             <a class="nav-link active" aria-current="page" href="#">Beranda</a>
             <a class="nav-link" href="#">Event Trending</a>
-            <a class="nav-link" href="<?= SITE_URL ?>/general/tiket">Buat Event</a>
             <?php if(isset($_SESSION['username'])) : ?>
-                <a class="nav-link" href="<?= SITE_URL ?>/general/pembayaran">Pembayaran</a>
-                <a class="nav-link" href="<?= SITE_URL ?>/general/laporan">Detail</a>
+                <a class="nav-link" href="<?php 
+                if($_SESSION['level'] == 2) {
+                    echo SITE_URL.'/admin/dashboard';
+                } else {
+                    echo SITE_URL.'/general/dashboard';
+                }
+                ?>">Dashboard</a>
                 <a class="nav-link" href="<?= SITE_URL ?>/proses/logout.php"><button id="daftar" class="border">Logout</button></a>
             <?php else : ?>
                 <a class="nav-link" href="<?= SITE_URL ?>/registrasi.php"><button id="daftar" class="border">Daftar</button></a>
@@ -126,7 +130,7 @@
                             <h6><?= number_format($rows['harga'],2); ?> IDR</h6>
                             <hr />
                             <div class="location">
-                                <img src="./assets/loc.svg" alt="" />
+                                <img src="./assets/img/loc.svg" alt="" />
                                 <span class="ms-2"><?= $rows['lokasi'] ?></span>
                             </div>
                         </div>
@@ -167,7 +171,7 @@
                             <h6><?= number_format($rows['harga'],2); ?> IDR</h6>
                             <hr />
                             <div class="location">
-                                <img src="./assets/loc.svg" alt="" />
+                                <img src="./assets/img/loc.svg" alt="" />
                                 <span class="ms-2"><?= $rows['lokasi'] ?></span>
                             </div>
                         </div>
@@ -287,11 +291,15 @@
         </div>
     </footer>
     <!-- End Footer -->
+    <div id="success-msg" class="success-msg" aria-disabled="true"></div>
+
 
 
   <!--JS BOOTSTRAP-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="general/js/success.js"></script>
   <!--END JS BOOTSTRAP-->
 </body>
 
 </html>
+

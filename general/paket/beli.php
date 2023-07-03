@@ -15,57 +15,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title></title>
+    <link rel="stylesheet" href="../assets/css/buyPacket.css">
 </head>
 <body>
-    <a href="<?= SITE_URL ?>/proses/logout.php">Logout</a>
-    <h1>Beli Paket</h1>
-
-    <a href="<?= SITE_URL ?>/general/">Home</a> | 
-    <a href="<?= SITE_URL ?>/general/paket/">Beli Paket</a> | 
-    <a href="<?= SITE_URL ?>/general/tiket/">Manajemen Tiket</a> | 
-    <a href="<?= SITE_URL ?>/general/laporan/index.php">Laporan</a>
-    <br/><br/>
-
-    <table border="1px" width="70%">
-        <thead>
-            <tr>
-                <th>Paket</th>
-                <th>Harga</th>
-                <th>Tiket Basic</th>
-                <th>Tiket Gold</th>
-                <th>Deskripsi</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php
-            $query = $conn->query("SELECT * FROM tb_paket WHERE id_paket = {$_GET['id']}");
-            while($rows = $query->fetch_assoc()):
-                $harga = $rows['harga'];
-        ?>
-            <tr>
-                <td><?= $rows['nama_paket'] ?></td>
-                <td><?= $rows['harga'] ?></td>
-                <td><?= $rows['up_basic'] ?></td>
-                <td><?= $rows['up_gold'] ?></td>
-                <td><?= $rows['deskripsi'] ?></td>
-            </tr>  
-        <?php endwhile; ?>
-        </tbody>
-    </table>
-    <br/>
-
-    <form action="./proses/create.php" method="post" enctype="multipart/form-data" role="form">
-        <input type="hidden" name="id_paket" value="<?= $_GET['id'] ?>">
-        <input type="hidden" name="harga" value="<?= $harga ?>">
-        <label for="bayar">Bayar : </label>
-        <input type="number" name="bayar" id="bayar">
+    <div class="container">    
+        <table border="1px" width="70%">
+            <thead>
+                <tr>
+                    <th>Paket</th>
+                    <th>Harga</th>
+                    <th>Tiket Basic</th>
+                    <th>Tiket Gold</th>
+                    <th>Deskripsi</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php
+                $query = $conn->query("SELECT * FROM tb_paket WHERE id_paket = {$_GET['id']}");
+                while($rows = $query->fetch_assoc()):
+                    $harga = $rows['harga'];
+            ?>
+                <tr>
+                    <td><?= $rows['nama_paket'] ?></td>
+                    <td><?= $rows['harga'] ?></td>
+                    <td><?= $rows['up_basic'] ?></td>
+                    <td><?= $rows['up_gold'] ?></td>
+                    <td><?= $rows['deskripsi'] ?></td>
+                </tr>  
+            <?php endwhile; ?>
+            </tbody>
+        </table>
         <br/>
-        <label for="stok">Bukti Pembayaran : </label> <br/>
-        <input type="file" name="file">
-        <br/><br/>
-        <input type="submit" value="Submit" name="btn-submit"/>
-    </form>
+                
+        <form action="paket/proses/create.php" method="post" enctype="multipart/form-data" role="form">
+          <input type="hidden" name="id_paket" value="<?= $_GET['id'] ?>">
+          <input type="hidden" name="harga" value="<?= $harga ?>">
+          <label for="bayar">Bayar:</label>
+          <input type="number" name="bayar" id="bayar">
 
+          <div class="form-upload">
+            <label for="file" class="custom-file-upload">Upload Bukti Pembayaran</label>
+            <input type="file" name="file" id="file" onchange="handleFileUpload(this)">
+          </div>
+
+          <a href="paket/index.php" id="back-button">Sebelumnya</a>
+          <input type="submit" value="Beli Paket" name="btn-submit"/>
+        </form>
+        <div id="upload-status" class="alert" aria-disabled="true"></div>
+        <img id="image-preview" class="image-preview" src="" alt="Image Preview">
+    </div>
 </body>
+<script src="js/img-preview.js"></script>
 </html>

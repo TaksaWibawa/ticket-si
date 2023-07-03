@@ -18,7 +18,7 @@
     <a href="<?= SITE_URL ?>/proses/logout.php">Logout</a>
     <h1>Manajemen Tiket Pengguna</h1>
 
-    <a href="<?= SITE_URL ?>/general/">Home</a> | 
+    <a href="<?= SITE_URL ?>/general/dashboard">Home</a> | 
     <a href="<?= SITE_URL ?>/general/paket/">Beli Paket</a> | 
     <a href="<?= SITE_URL ?>/general/tiket/">Manajemen Tiket</a> | 
     <a href="<?= SITE_URL ?>/general/laporan/index.php">Laporan</a>

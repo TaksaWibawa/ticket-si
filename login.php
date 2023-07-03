@@ -5,52 +5,46 @@
     }
 ?>
 
-<!doctype html>
-<html class="no-js" lang="zxx">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title> Tiket </title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-    
-    <main>
-        <!--? slider Area Start-->
-        <div class="slider-area position-relative fix">
-            <div class="slider-active">
-                <!-- Single Slider -->
-                <div class="single-slider slider-height d-flex align-items-center">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-6 login-form mx-auto">
-                                <h1 class="text-white fs-1">Login</h1>
-                                <form class="text-white" action="proses/proses_login.php" method="POST">
-                                    <div class="form-group">
-                                        <label class="text-white">Username</label>
-                                        <input type="text" class="form-control form-control-lg" placeholder="Email" name="username">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="text-white">Password</label>
-                                        <input type="password" class="form-control form-control-lg" placeholder="Password" name="password">
-                                    </div>
-                                    <button type="submit" name="btn-submit" class="btn btn-success btn-flat" style="margin-bottom: 3%;">Sign in</button>
-                                    <div class="register-link m-t-15 text-center">
-                                        <p class="text-white">Don't have account ? <a href="registrasi.php"> Sign Up Here</a></p>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>          
-                </div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/login.css">
+    <title>Masuk</title>
+  </head>
+  <body>
+    <div class="container">
+        <div class="left-column">
+            <div class="bg"></div>
+            <div class="content">
+                <h1>
+                    Mari <span>Log In</span> dan nikmati semua <span>keuntungannya!</span>
+                </h1>
+                <p>Kamu cukup masukkan nomor ponsel atau email aja, kok.</p>
+                <!-- tambah logo nanti disini -->
             </div>
         </div>
-        <!-- slider Area End-->
-        
-    </main>
-    
-    
-    
-    </body>
+        <div class="right-column">
+            <form action="proses/proses_login.php" method="POST">
+                <h1>Log In</h1>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="submit" name="btn-submit" value="Log In">
+
+                <p>Dengan login kamu menyetujui <a href="#">Syarat & Ketentuan</a> dan <a href="#">Kebijakan Privasi</a> UniTix.</p>
+
+                <p>Belum punya akun? <a href="registrasi.php">Buat Akun yuk!</a></p>
+            </form>
+            <div id="credit">
+                <img src="assets/img/credential.png" alt="logo">
+                <p>
+                    © 2011-2023 PT.UniTix. All Rights Reserved
+                </p>
+            </div>
+        </div>
+        <div id="alert-msg" class="alert-msg" aria-disabled="true"></div>
+    </div>
+</body>
+<script src="general/js/alert.js"></script>
 </html>

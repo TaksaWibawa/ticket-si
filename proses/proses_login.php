@@ -1,56 +1,63 @@
-<?php 
+<?php
 
-	require_once "../config/Database.php";
+require_once "../config/Database.php";
 
-	if (isset($_POST['btn-submit'])) {
+function redirectWithAlert($location, $status, $message) {
+    $location .= '?alert=' . $status . '&message=' . urlencode($message);
+    header('Location: ' . $location);
+    exit();
+}
 
-		$username = mysqli_real_escape_string($conn, $_POST['username']);
-		$password = mysqli_real_escape_string($conn, $_POST['password']);
+if (isset($_POST['btn-submit'])) {
 
-		if (!empty($username) && !empty($password)) {
-			
-			if (trim($username) && trim($password)) {
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-				$query = $conn->query("SELECT * FROM tb_akun WHERE username = '$username'");
+    if (!empty($username) && !empty($password)) {
 
-				if ($query->num_rows == 1) {
+        if (trim($username) && trim($password)) {
 
-					$rows = $query->fetch_assoc();
+            $query = $conn->query("SELECT * FROM tb_akun WHERE username = '$username'");
 
-					if (password_verify($password, $rows['password'])) {
+            if ($query->num_rows == 1) {
 
-						$query = $conn->query("SELECT id_pengguna FROM tb_pengguna WHERE id_akun = '{$rows['id_akun']}'");
-						$rows_pengguna = $query->fetch_assoc();
+                $rows = $query->fetch_assoc();
 
-						session_start();
-						$_SESSION['username'] = $username;
-						$_SESSION['id_pengguna'] = $rows_pengguna['id_pengguna'];
-						$_SESSION['level'] = $rows['level'];
+                if (password_verify($password, $rows['password'])) {
 
-						if ($rows['level'] == 1) {
-							// pengguna
-							alert('../index.php', 'BERHASIL', 'Selamat Datang '.$username, 'success');
-						} elseif ($rows['level'] == 2) {
-							// admin
-							alert('../admin/index.php', 'BERHASIL', 'Selamat Datang '.$username, 'success');
-						} 
-						
-					} else {
-						alert('../login.php', 'GAGAL', 'Password salah!!', 'error');
-					}
-					
-				} else {
-					alert('../login.php', 'GAGAL', 'Maaf, Anda tidak terdaftar!', 'error');
-				}
+                    $query = $conn->query("SELECT id_pengguna FROM tb_pengguna WHERE id_akun = '{$rows['id_akun']}'");
+                    $rows_pengguna = $query->fetch_assoc();
 
-			} else {
-				alert('../login.php', 'GAGAL', 'Data tidak boleh kosong!!!', 'warning');
-			}
-			
-		} else {
-			alert('../login.php', 'GAGAL', 'Data tidak boleh kosong!!!', 'warning');
-		}
+                    session_start();
+                    $_SESSION['username'] = $username;
+                    $_SESSION['id_pengguna'] = $rows_pengguna['id_pengguna'];
+                    $_SESSION['level'] = $rows['level'];
 
-	} else {
-		header('location: ../login.php');
-	}
+                    if ($rows['level'] == 1) {
+                        // pengguna
+                        redirectWithAlert('../index.php', 'success', 'Selamat Datang ' . $username);
+                    } elseif ($rows['level'] == 2) {
+                        // admin
+                        redirectWithAlert('../admin/dashboard', 'success', 'Selamat Datang ' . $username);
+                    }
+
+                } else {
+                    redirectWithAlert('../login.php', 'error', 'Password salah!!');
+                }
+
+            } else {
+                redirectWithAlert('../login.php', 'error', 'Maaf, Anda tidak terdaftar!');
+            }
+
+        } else {
+            redirectWithAlert('../login.php', 'warning', 'Data tidak boleh kosong!!!');
+        }
+
+    } else {
+        redirectWithAlert('../login.php', 'warning', 'Data tidak boleh kosong!!!');
+    }
+
+} else {
+    header('Location: ../login.php');
+    exit();
+}

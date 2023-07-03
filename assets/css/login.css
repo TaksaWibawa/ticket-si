@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: auto;
+    color: #2A3456;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+}
+
+/* edit nanti biar rapi */
+.left-column {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+}
+
+/* image dibawa ke tengah nanti */
+.bg::before {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../img/unud.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: blur(5px);
+}
+
+.bg::after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(1deg, #04173A 0%, rgba(243, 247, 255, 0) 99.16%);
+}  
+
+.right-column {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    /* border-radius: 60px 0 0 60px; */
+    /* ini gabisa dipake dulu, imagenya kurang ngepas */
+    box-shadow: -8px 4px 61px rgba(0, 0, 0, 0.13);
+    overflow: auto;
+    scroll-behavior: smooth;
+}
+
+form {
+    flex: 1;
+    margin: 60px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ubah nanti alignmentnya*/
+form h1{ 
+    text-align: left;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+}
+
+form input[type="text"], form input[type="password"] {
+    box-sizing: border-box;
+    border: 2.5px solid #4A5D82;
+    border-radius: 15px;
+    width: 70%;
+    padding: 18px 20px;
+    margin-bottom: 10px;
+}
+
+form input[type="submit"] {
+    background: linear-gradient(225deg, #2972B9 0%, #2E3790 100%);
+    color: white;
+    width: 70%;
+    margin: 15px 0;
+    padding: 18px 20px;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+form p {
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+    line-height: 24px;
+    max-width: 70%;
+}
+
+form a{
+    text-decoration: none;
+    color: #E96B30;
+    font-weight: 700;
+}
+
+form a:hover {
+    text-decoration: underline;
+}
+
+/* ubah nanti biat relatif ke kontainernya (bungkus div aja nanti cm mager) */
+
+#credit{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    margin: auto;
+    max-width: inherit;
+    margin-bottom: 20px;
+}
+
+#credit img{
+    width: 100px;
+    height: auto;
+    object-fit: contain;
+}
+
+#credit p{
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    max-width: 70%;
+}
+
+.left-column .content {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 700;
+    align-content: center;
+    max-width: 70%;
+}
+
+.left-column .content h1{
+    margin: 0 auto;
+}
+
+.left-column .content span{
+    color: #E96B30;
+}
+
+.left-column .content p{
+    font-size: 15px;
+    font-weight: 400;
+}
+
+/* For WebKit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 6px; /* Width of the scroll bar */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Background color of the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the scroll thumb */
+  border-radius: 3px; /* Rounded corners of the scroll thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Color of the scroll thumb on hover */
+}
+
+.alert-msg {
+  opacity: 0;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 20px 60px;
+  background-color: #d52525;
+  color: #ffffff;
+  border-radius: 4px;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.alert-msg.show {
+  opacity: 1;
+}

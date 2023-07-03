@@ -1,57 +1,46 @@
-<!doctype html>
-<html class="no-js" lang="zxx">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title> Tiket </title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-    <main>
-        <!--? slider Area Start-->
-        <div class="slider-area position-relative fix">
-            <div class="slider-active">
-                <!-- Single Slider -->
-                <div class="single-slider slider-height d-flex align-items-center">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-6 login-form mx-auto">
-                                <h1 class="text-white fs-1">Registrasi</h1>
-                                <form class="text-white" action="proses/proses_register.php" method="POST">
-                                    <div class="form-group">
-                                        <label class="text-white">Nama Lengkap</label>
-                                        <input type="text" class="form-control form-control-lg" placeholder="Nama Lengkap" name="nama_pengguna">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="text-white">No Telepon</label>
-                                        <input type="text" class="form-control form-control-lg" placeholder="087.....9" name="telp">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="text-white" for="alamat">Alamat</label>
-                                        <textarea name="alamat" id="alamat" cols="30" rows="10"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="text-white">Username</label>
-                                        <input type="text" class="form-control form-control-lg" placeholder="Username" name="username">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="text-white">Password</label>
-                                        <input type="password" class="form-control form-control-lg" placeholder="Password" name="password">
-                                    </div>
-                                    <button type="submit" name="btn-submit" class="btn btn-success btn-flat" style="margin-bottom: 3%;">Sign Up</button>
-                                    <div class="register-link m-t-15 text-center">
-                                        <p class="text-white">Have account ? <a href="login.php"> Sign In Here</a></p>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>          
-                </div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/register.css">
+    <title>Daftar</title>
+  </head>
+  <body>
+    <div class="container">
+        <div class="left-column">
+            <form action="proses/proses_register.php" method="POST">
+                <h1>Sign Up</h1>
+                <input type="text" name="nama_pengguna" placeholder="Full Name" required>
+                <input type="text" name="telp" placeholder="Phone Number" required>
+                <input type="text" name="alamat" id="alamat" placeholder="Address" required>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="submit" name="btn-submit" value="Sign Up">
+
+                <p>Dengan login kamu menyetujui <a href="#">Syarat & Ketentuan</a> dan <a href="#">Kebijakan Privasi</a> UniTix.</p>
+
+                <p>Sudah punya akun? <a href="login.php">Log In aja</a></p>
+            </form>
+            <div id="credit">
+                <img src="assets/img/credential.png" alt="logo">
+                <p>
+                    © 2011-2023 PT.UniTix. All Rights Reserved
+                </p>
             </div>
         </div>
-        <!-- slider Area End-->
-        
-    </main>
-    </body>
+        <div class="right-column">
+            <div class="bg"></div>
+            <div class="content">
+                <h1>
+                    Bisa liburan ala <span>Sultan</span>, tapi <span>dompet</span> tetap <span>aman</span>!
+                </h1>
+                <p>Buat akun untuk dapet harga lebih hemat, diskon ekstra, & asuransi gratis.</p>
+                <!-- tambah logo nanti disini -->
+            </div>
+        </div>
+        <div id="alert-msg" class="alert-msg" aria-disabled="true"></div>
+    </div>
+</body>
+<script src="general/js/alert.js"></script>
 </html>

@@ -18,9 +18,9 @@
     <a href="<?= SITE_URL ?>/proses/logout.php">Logout</a>
     <h1>Manajemen Tiket Pengguna</h1>
 
-    <a href="../index.php">Home</a>
+    <a href="<?= SITE_URL ?>/index.php">Home</a>
     <br/>
-    <a href="../index.php">Kembali</a>
+    <a href="<?= SITE_URL ?>/index.php">Kembali</a>
     <br/><br/>
 
     <table border="1px" width="70%">
