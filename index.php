@@ -1,60 +1,59 @@
 <?php
-    session_start();
-    require_once "./config/Database.php";
+session_start();
+require_once "./config/Database.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!--CSS-->
-  <link rel="stylesheet" href="<?= SITE_URL ?>/assets/css/style.css" />
-  <!--END CSS-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--CSS-->
+    <link rel="stylesheet" href="<?= SITE_URL ?>/assets/css/style.css" />
+    <!--END CSS-->
 
-  <!--CSS BOOTSTRAP-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-  <!--END CSS BOOTSTRAP-->
+    <!--CSS BOOTSTRAP-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <!--END CSS BOOTSTRAP-->
 
-  <title>Landing Page</title>
+    <title>Landing Page</title>
 </head>
 
 <body>
-  <!-- Navbar  -->
+    <!-- Navbar  -->
     <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-dark py-3">
-      <div class="container">
-        <a href="" class="navbar-brand">
-          <img width="70%" class="mobileLogo" src="<?= SITE_URL ?>/assets/img/logoMobile.svg" alt="">
-        </a>
-        <a class="navbar-brand" href="#"
-          ><img class="deskLogo" width="70%" src="<?= SITE_URL ?>/assets/img/Logo.svg" alt=""/></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav ms-auto">
-            <a class="nav-link active" aria-current="page" href="#">Beranda</a>
-            <a class="nav-link" href="#">Event Trending</a>
-            <?php if(isset($_SESSION['username'])) : ?>
-                <a class="nav-link" href="<?php 
-                if($_SESSION['level'] == 2) {
-                    echo SITE_URL.'/admin/dashboard';
-                } else {
-                    echo SITE_URL.'/general/dashboard';
-                }
-                ?>">Dashboard</a>
-                <a class="nav-link" href="<?= SITE_URL ?>/proses/logout.php"><button id="daftar" class="border">Logout</button></a>
-            <?php else : ?>
-                <a class="nav-link" href="<?= SITE_URL ?>/registrasi.php"><button id="daftar" class="border">Daftar</button></a>
-                <a class="nav-link" href="<?= SITE_URL ?>/login.php"><button>Masuk</button></a>
-            <?php endif; ?>
-          </div>
+        <div class="container">
+            <a href="" class="navbar-brand">
+                <img width="70%" class="mobileLogo" src="<?= SITE_URL ?>/assets/img/logoMobile.svg" alt="">
+            </a>
+            <a class="navbar-brand" href="#"><img class="deskLogo" width="70%" src="<?= SITE_URL ?>/assets/img/Logo.svg" alt="" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link active" aria-current="page" href="#">Beranda</a>
+                    <a class="nav-link" href="#">Event Trending</a>
+                    <?php if (isset($_SESSION['username'])) : ?>
+                        <a class="nav-link" href="<?php
+                                                    if ($_SESSION['level'] == 2) {
+                                                        echo SITE_URL . '/admin/dashboard';
+                                                    } else {
+                                                        echo SITE_URL . '/general/dashboard';
+                                                    }
+                                                    ?>">Dashboard</a>
+                        <a class="nav-link" href="<?= SITE_URL ?>/proses/logout.php"><button id="daftar" class="border">Logout</button></a>
+                    <?php else : ?>
+                        <a class="nav-link" href="<?= SITE_URL ?>/registrasi.php"><button id="daftar" class="border">Daftar</button></a>
+                        <a class="nav-link" href="<?= SITE_URL ?>/login.php"><button>Masuk</button></a>
+                    <?php endif; ?>
+                </div>
+            </div>
         </div>
-      </div>
     </nav>
     <!-- END Navbar  -->
 
-  <!-- Hero Section -->
+    <!-- Hero Section -->
     <section id="Hero">
         <div class="container-fluid d-flex align-items-center">
             <div class="container text-white">
@@ -77,29 +76,29 @@
 
     <!-- Poster Section -->
     <section id="poster">
-      <div class="container py-5">
-          <div class="row">
-            <?php
+        <div class="container py-5">
+            <div class="row">
+                <?php
                 $i = 1;
                 $query = $conn->query("SELECT tb_tiket.*, tb_tiket_ekslusif.foto_ekslusif FROM tb_tiket 
                     RIGHT JOIN tb_tiket_ekslusif ON tb_tiket.id_tiket = tb_tiket_ekslusif.id_tiket
                     WHERE status = 1;");
-                while($rows = $query->fetch_assoc()):
-            ?>
-              <div class="col-12 mb-3">
-                  <a href="general/transaksi/?id=<?= $rows['id_tiket'] ?>">
-                      <div class="posterImg">
-                          <img width="100%" src="<?= SITE_URL ?>/general/up_file/foto_ekslusif/<?= $rows['foto_ekslusif'] ?>" alt="Foto Ekslusif"/>
-                      </div>
-                  </a>
-              </div>
-            <?php endwhile; ?>
-          </div>
-      </div>
+                while ($rows = $query->fetch_assoc()) :
+                ?>
+                    <div class="col-12 mb-3">
+                        <a href="general/transaksi/?id=<?= $rows['id_tiket'] ?>">
+                            <div class="posterImg">
+                                <img width="100%" src="<?= SITE_URL ?>/general/up_file/foto_ekslusif/<?= $rows['foto_ekslusif'] ?>" alt="Foto Ekslusif" />
+                            </div>
+                        </a>
+                    </div>
+                <?php endwhile; ?>
+            </div>
+        </div>
     </section>
     <!--END Poster -->
 
-  <!-- Event Section -->
+    <!-- Event Section -->
     <!-- Event Terbaru Section -->
     <div class="container pt-3 pb-5">
         <div class="row">
@@ -110,11 +109,11 @@
             </div>
             <!-- Event Card -->
             <?php
-                $i = 1;
-                $query = $conn->query("SELECT tb_tiket.* FROM tb_tiket 
+            $i = 1;
+            $query = $conn->query("SELECT tb_tiket.* FROM tb_tiket 
                     LEFT JOIN tb_tiket_ekslusif ON tb_tiket.id_tiket = tb_tiket_ekslusif.id_tiket 
                     WHERE tb_tiket_ekslusif.id_tiket IS NULL AND status = 1;");
-                while($rows = $query->fetch_assoc()):
+            while ($rows = $query->fetch_assoc()) :
             ?>
                 <!-- Event 1 -->
                 <div class="col-lg-4 col-md-6 d-flex justify-content-center">
@@ -127,7 +126,7 @@
                         <div class="card-body">
                             <h6 class="card-title"><?= $rows['judul_tiket'] ?></h6>
                             <p class="card-text"><?= date('d F Y', strtotime($rows['tanggal_akhir'])); ?></p>
-                            <h6><?= number_format($rows['harga'],2); ?> IDR</h6>
+                            <h6><?= number_format($rows['harga'], 2); ?> IDR</h6>
                             <hr />
                             <div class="location">
                                 <img src="./assets/img/loc.svg" alt="" />
@@ -152,12 +151,12 @@
             <!-- Event Card -->
 
             <?php
-                $i = 1;
-                $query = $conn->query("SELECT tb_tiket.* FROM tb_tiket 
+            $i = 1;
+            $query = $conn->query("SELECT tb_tiket.* FROM tb_tiket 
                     LEFT JOIN tb_tiket_ekslusif ON tb_tiket.id_tiket = tb_tiket_ekslusif.id_tiket 
                     WHERE tb_tiket_ekslusif.id_tiket IS NULL AND status = 1 
                     ORDER BY tb_tiket.tanggal_akhir ASC ;");
-                while($rows = $query->fetch_assoc()):
+            while ($rows = $query->fetch_assoc()) :
             ?>
                 <!-- Event 1 -->
                 <div class="col-lg-4 col-md-6 d-flex justify-content-center">
@@ -168,7 +167,7 @@
                         <div class="card-body">
                             <h6 class="card-title"><?= $rows['judul_tiket'] ?></h6>
                             <p class="card-text"><?= date('d F Y', strtotime($rows['tanggal_akhir'])); ?></p>
-                            <h6><?= number_format($rows['harga'],2); ?> IDR</h6>
+                            <h6><?= number_format($rows['harga'], 2); ?> IDR</h6>
                             <hr />
                             <div class="location">
                                 <img src="./assets/img/loc.svg" alt="" />
@@ -186,7 +185,7 @@
 
     <!--END Event Section -->
 
-  <!-- Footer -->
+    <!-- Footer -->
     <footer>
         <div class="container-footer py-5">
             <div class="container">
@@ -295,11 +294,10 @@
 
 
 
-  <!--JS BOOTSTRAP-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  <script src="general/js/success.js"></script>
-  <!--END JS BOOTSTRAP-->
+    <!--JS BOOTSTRAP-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="general/js/success.js"></script>
+    <!--END JS BOOTSTRAP-->
 </body>
 
 </html>
-
