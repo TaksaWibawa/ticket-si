@@ -9,12 +9,12 @@ $nama_db = "si_tiket"; //nama database
 $conn = new mysqli($host, $user, $pass, $nama_db);
 
 if (!$conn) { //jika tidak terkoneksi maka akan tampil error
-  die("Koneksi database gagal: " . mysqli_connect_error());
+	die("Koneksi database gagal: " . mysqli_connect_error());
 }
 
 function alert($location, $title, $message, $icon)
 {
-  echo "
+	echo "
 			<script>
 				alert('$message');
 				location.href = '$location';
