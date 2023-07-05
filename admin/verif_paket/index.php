@@ -14,22 +14,10 @@ if (!isset($_SESSION['username'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../../assets/css/tiketHistory.css">
 </head>
 
 <body>
-    <a href="<?= SITE_URL ?>/proses/logout.php">Logout</a>
-    <h1>Verifikasi Paket</h1>
-
-    <!-- navigasi -->
-    <a href="<?= SITE_URL ?>/admin/dashboard/">Home</a> |
-    <a href="<?= SITE_URL ?>/admin/paket/">Paket</a> |
-    <a href="<?= SITE_URL ?>/admin/tiket/">Tiket</a> |
-    <a href="<?= SITE_URL ?>/admin/verif_paket/">Verifikasi Paket</a> |
-    <a href="<?= SITE_URL ?>/admin/verif_tiket/">Verifikasi Tiket</a> |
-    <a href="<?= SITE_URL ?>/admin/penarikan/">Penarikan</a> |
-    <a href="<?= SITE_URL ?>/admin/laporan/">Laporan</a>
-    <br /><br />
-
     <table border="1px" width="70%">
         <thead>
             <tr>
@@ -61,7 +49,7 @@ if (!isset($_SESSION['username'])) {
                     <td><?= $rows['harga'] ?></td>
                     <td><?= $rows['tanggal'] ?></td>
                     <td>
-                        <a href="proses/verif.php?id=<?= $rows['id_transaksi_paket'] ?>">Verifikasi</a>
+                        <a href="verif_paket/proses/verif.php?id=<?= $rows['id_transaksi_paket'] ?>" id="verif">Verifikasi</a>
                     </td>
                 </tr>
             <?php endwhile; ?>

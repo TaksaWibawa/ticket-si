@@ -21,19 +21,24 @@
 				$query = $conn->query("INSERT INTO tb_paket VALUES('', '$nama_paket', '$harga', '$up_basic', '$up_gold', '$deskripsi')");
 
 				if ($query) {
-					alert('../index.php', 'BERHASIL', 'Berhasil Menambah Data', 'success');
+					header('location: ../../dashboard?alert=success&message=Berhasil Memverifikasi');
+					exit();
 				} else {
-					alert('../index.php', 'GAGAL', 'Ada yang salah!', 'error');
+					header('location: ../../dashboard?alert=danger&message=Gagal Memverifikasi');
+					exit();
 				}
 
 			} else {
-				alert('../index.php', 'GAGAL', 'Data tidak boleh kosong!!!', 'warning');
+				header('location: ../../dashboard?alert=danger&message=Data tidak boleh mengandung spasi!!!');
+				exit();
 			}
 			
 		} else {
-			alert('../index.php', 'GAGAL', 'Data tidak boleh kosong!!!', 'warning');
+			header('location: ../../dashboard?alert=danger&message=Data tidak boleh kosong!!!');
+			exit();
 		}
 
 	} else {
-		header('location: ../index.php');
+		header('location: ../../dashboard?alert=danger&message=Silahkan masukkan data terlebih dahulu!!!');
+		exit();
 	}

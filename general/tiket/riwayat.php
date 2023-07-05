@@ -6,7 +6,7 @@
         header('location: ../../login.php');
     }
 
-    $query = $conn->query("SELECT qty_basic, qty_gold FROM tb_pengguna WHERE id_pengguna = {$_SESSION['id_pengguna']}");
+    $query = $conn->query("SELECT qty_basic, qty_gold FROM tb_pengguna WHERE id_pengguna = '{$_SESSION['id_pengguna']}'");
     $qty_up = $query->fetch_assoc();
 ?>
 
@@ -25,10 +25,10 @@
             $id = $_SESSION['id_pengguna'];
             $query = $conn->query("SELECT tb_tiket.*, tb_tiket_ekslusif.foto_ekslusif FROM tb_tiket 
                 RIGHT JOIN tb_tiket_ekslusif ON tb_tiket.id_tiket = tb_tiket_ekslusif.id_tiket 
-                WHERE id_pengguna = $id;");
+                WHERE id_pengguna = '$id';");
             $basicQuery = $conn->query("SELECT * FROM tb_tiket
                 LEFT JOIN tb_tiket_ekslusif ON tb_tiket.id_tiket = tb_tiket_ekslusif.id_tiket
-                WHERE id_pengguna = $id AND tb_tiket_ekslusif.id_tiket IS NULL");
+                WHERE id_pengguna = '$id' AND tb_tiket_ekslusif.id_tiket IS NULL");
             
             $hasData = false;
 

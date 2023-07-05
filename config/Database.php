@@ -2,7 +2,7 @@
 
 date_default_timezone_set('Asia/Ujung_Pandang');
 
-$host = "localhost";
+$host = "localhost:3310";
 $user = "root";
 $pass = "";
 $nama_db = "si_tiket"; //nama database
@@ -22,7 +22,7 @@ function alert($location, $title, $message, $icon)
 		";
 }
 
-define('SITE_URL', 'http://localhost/kuliah/si/git/ticket-si'); //ini sesuaiin sama punya kita
+define('SITE_URL', 'http://localhost:3000'); //ini sesuaiin sama punya kita
 
 // <?php
 

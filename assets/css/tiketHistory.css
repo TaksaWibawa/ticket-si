@@ -61,3 +61,13 @@ table td img {
 table tr:nth-child(even) {
     background-color: #f1f1f1;
 }
+
+#verif{
+    color: red;
+    cursor: pointer;
+}
+
+#verif:hover{
+    color: rgb(151, 0, 0);
+    text-decoration: underline;
+}

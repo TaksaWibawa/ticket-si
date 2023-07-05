@@ -6,7 +6,7 @@
         header('location: ../../login.php');
     }
 
-    $query = $conn->query("SELECT qty_basic, qty_gold FROM tb_pengguna WHERE id_pengguna = {$_SESSION['id_pengguna']}");
+    $query = $conn->query("SELECT qty_basic, qty_gold FROM tb_pengguna WHERE id_pengguna = '{$_SESSION['id_pengguna']}'");
     $qty_up = $query->fetch_assoc();
 ?>
 
@@ -52,7 +52,7 @@
             $id = $_SESSION['id_pengguna'];
             $query = $conn->query("SELECT tb_transaksi_tiket.*, tb_transaksi_tiket.tanggal_beli + INTERVAL '30' MINUTE AS tanggal_bayar, tb_tiket.judul_tiket, tb_tiket.foto_tiket FROM tb_transaksi_tiket 
                 INNER JOIN tb_tiket ON tb_tiket.id_tiket = tb_transaksi_tiket.id_tiket 
-                WHERE tb_transaksi_tiket.id_pengguna = $id AND status_bayar = 0;");
+                WHERE tb_transaksi_tiket.id_pengguna = '$id' AND status_bayar = 0;");
             while($rows = $query->fetch_assoc()):
         ?>
             <tr>

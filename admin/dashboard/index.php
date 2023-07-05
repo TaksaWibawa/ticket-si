@@ -14,7 +14,7 @@ if (!isset($_SESSION['username'])) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="<?= SITE_URL ?>/assets/css/dashboard.css" rel="stylesheet" />
-  <title>Selamat Datang!</title>
+  <title></title>
   <script>
     // Disable right-click on sidebar links
     document.addEventListener("DOMContentLoaded", function() {
@@ -38,7 +38,10 @@ if (!isset($_SESSION['username'])) {
       </div>
       <ul class="menu">
         <li class="menu-item">
-          <a href="<?= SITE_URL ?>/admin/paket">Kelola Paket</a>
+          <a href="<?= SITE_URL ?>/admin/paket">Tambah Paket</a>
+        </li>
+        <li class="menu-item">
+          <a href="<?= SITE_URL ?>/admin/paket/kelola.php">Kelola Paket</a>
         </li>
         <li class="menu-item">
           <a href="<?= SITE_URL ?>/admin/tiket">Kelola Event</a>

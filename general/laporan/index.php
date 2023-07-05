@@ -21,7 +21,7 @@ if (!isset($_SESSION['username'])) {
     <?php
     $query = $conn->query("SELECT tb_transaksi_tiket.*, tb_tiket.judul_tiket, tb_tiket.foto_tiket FROM tb_transaksi_tiket 
                 INNER JOIN tb_tiket ON tb_tiket.id_tiket = tb_transaksi_tiket.id_tiket 
-                WHERE tb_transaksi_tiket.id_pengguna = {$_SESSION['id_pengguna']} AND status_bayar = '1'");
+                WHERE tb_transaksi_tiket.id_pengguna = '{$_SESSION['id_pengguna']}' AND status_bayar = '1'");
     $rowCount = $query->num_rows;
 
     if ($rowCount > 0) {

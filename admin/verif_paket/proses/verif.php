@@ -23,11 +23,13 @@
 			$up_basic = $qty_now['qty_basic'] + $qty_up['up_basic'];
 			$up_gold = $qty_now['qty_gold'] + $qty_up['up_gold'];
 
-			$query = $conn->query("UPDATE tb_pengguna SET qty_basic = $up_basic, qty_gold = $up_gold WHERE id_pengguna = {$tr_paket['id_pengguna']}");
+			$query = $conn->query("UPDATE tb_pengguna SET qty_basic = $up_basic, qty_gold = $up_gold WHERE id_pengguna = '{$tr_paket['id_pengguna']}'");
 
-			alert('../index.php', 'BERHASIL', 'Berhasil Memverifikasi', 'success');
+			header('location: ../../dashboard?alert=success&message=Berhasil Memverifikasi');
+			exit();
 		} else {
-			alert('../index.php', 'GAGAL', 'Ada yang salah!', 'error');
+			header('location: ../../dashboard?alert=error&message=Ada yang salah!');
+			exit();
 		}
 
 	} else {

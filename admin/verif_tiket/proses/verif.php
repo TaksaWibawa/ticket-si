@@ -11,9 +11,11 @@
 		$query = $conn->query("UPDATE tb_tiket SET status = 1 WHERE id_tiket = {$_GET['id']}");
 
 		if ($query) {
-			alert('../index.php', 'BERHASIL', 'Berhasil Memverifikasi', 'success');
+			header('location: ../../dashboard?alert=success&message=Berhasil Memverifikasi');
+			exit();
 		} else {
-			alert('../index.php', 'GAGAL', 'Ada yang salah!', 'error');
+			header('location: ../../dashboard?alert=error&message=Ada yang Salah!');
+			exit();
 		}
 
 	} else {

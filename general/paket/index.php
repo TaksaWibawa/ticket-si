@@ -6,7 +6,7 @@ if (!isset($_SESSION['username'])) {
     header('location: ../../login.php');
 }
 
-$query = $conn->query("SELECT qty_basic, qty_gold FROM tb_pengguna WHERE id_pengguna = {$_SESSION['id_pengguna']}");
+$query = $conn->query("SELECT qty_basic, qty_gold FROM tb_pengguna WHERE id_pengguna = '{$_SESSION['id_pengguna']}'");
 $qty_up = $query->fetch_assoc();
 ?>
 

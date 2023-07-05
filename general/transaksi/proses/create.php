@@ -28,7 +28,7 @@
 						$new_stok = $stok - $jumlah;
 						$query = $conn->query("UPDATE tb_tiket SET stok = '$new_stok' WHERE id_tiket = '$id_tiket'");
 
-						$query = $conn->query("SELECT id_transaksi_tiket FROM tb_transaksi_tiket WHERE id_pengguna = {$_SESSION['id_pengguna']} ORDER BY id_transaksi_tiket DESC LIMIT 1");
+						$query = $conn->query("SELECT id_transaksi_tiket FROM tb_transaksi_tiket WHERE id_pengguna = '{$_SESSION['id_pengguna']}' ORDER BY id_transaksi_tiket DESC LIMIT 1");
 						$id_transaksi_tiket = $query->fetch_assoc()['id_transaksi_tiket'];
 
 						alert(SITE_URL.'/general/pembayaran/bayar.php?id='.$id_transaksi_tiket, 'BERHASIL', 'Pemesanan Berhasil', 'success');
