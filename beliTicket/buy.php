@@ -37,11 +37,21 @@ if (!isset($_SESSION['username'])) {
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
-                    <a class="nav-link active" aria-current="page" href="#">Beranda</a>
+                    <a class="nav-link active" aria-current="page" href="<?= SITE_URL ?>/proses/logout.php">Beranda</a>
                     <a class="nav-link" href="#">Event Trending</a>
-                    <a class="nav-link" href="#">Buat Event</a>
-                    <a class="nav-link" href="#"><button id="daftar" class="border">Daftar</button></a>
-                    <a class="nav-link" href="#"><button>Masuk</button></a>
+                    <?php if (isset($_SESSION['username'])) : ?>
+                        <a class="nav-link" href="<?php
+                                                    if ($_SESSION['level'] == 2) {
+                                                        echo SITE_URL . '/admin/dashboard';
+                                                    } else {
+                                                        echo SITE_URL . '/general/dashboard';
+                                                    }
+                                                    ?>">Dashboard</a>
+                        <a class="nav-link" href="<?= SITE_URL ?>/proses/logout.php"><button id="daftar" class="border">Logout</button></a>
+                    <?php else : ?>
+                        <a class="nav-link" href="<?= SITE_URL ?>/registrasi.php"><button id="daftar" class="border">Daftar</button></a>
+                        <a class="nav-link" href="<?= SITE_URL ?>/login.php"><button>Masuk</button></a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

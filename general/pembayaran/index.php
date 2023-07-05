@@ -15,24 +15,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title></title>
+    <link rel="stylesheet" href="../../assets/css/tiketHistory.css">
 </head>
 <body>
-    <?php if(isset($_SESSION['username'])) : ?>
-        <a href="proses/logout.php">Logout</a>
-    <?php else : ?>
-        <a href="login.php">Login</a> | 
-        <a href="registrasi.php">Registrasi</a>
-    <?php endif; ?>
-    <h1>Pembayaran</h1>
-
-    <a href="<?= SITE_URL ?>/">Home</a> | 
-    <a href="<?= SITE_URL ?>/index.php">Event Trending</a> | 
-    <a href="<?= SITE_URL ?>/general/tiket">Buat Event</a> | 
-    <a href="<?= SITE_URL ?>/general/pembayaran">Pembayaran</a> |
-    <a href="<?= SITE_URL ?>/general/laporan">Laporan</a>
-    <br/><br/>
-
     <table border="1px" width="70%">
         <thead>
             <tr>
@@ -71,9 +57,9 @@
                 <td>Rp. <?= $rows['harga'] ?></td>
                 <td>
                     <?php if(date('Y-m-d H:i:s') <= $rows['tanggal_bayar']) : ?>
-                        <a href="./bayar.php?id=<?= $rows['id_transaksi_tiket'] ?>">Bayar</a>
+                        <a href="pembayaran/bayar.php?id=<?= $rows['id_transaksi_tiket'] ?>" id="verif">Bayar</a>
                     <?php else : ?>
-                        <a href="#" onclick="alert('Maaf, tanggal pembayaran sudah lewat!')">Bayar</a>
+                        <a href="#" onclick="alert('Maaf, tanggal pembayaran sudah lewat!')" id="verif">Bayar</a>
                     <?php endif; ?>
                 </td>
             </tr>  

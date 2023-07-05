@@ -44,6 +44,9 @@ if (!isset($_SESSION['username'])) {
           <a href="<?= SITE_URL ?>/general/tiket">Buat Event</a>
         </li>
         <li class="menu-item">
+          <a href="<?= SITE_URL ?>/general/pembayaran/index.php">Status Bayar Tiket</a>
+        </li>
+        <li class="menu-item">
           <a href="<?= SITE_URL ?>/general/tiket/riwayat.php">Riwayat Pembuatan Event</a>
         </li>
         <li class="menu-item">

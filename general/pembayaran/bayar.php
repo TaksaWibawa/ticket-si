@@ -15,14 +15,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title></title>
+    <link rel="stylesheet" href="../../assets/css/buyTicket.css">
 </head>
 <body>
-    <a href="<?= SITE_URL ?>/proses/logout.php">Logout</a>
+    <a href="<?php SITE_URL ?>/index.php">Kembali</a>
     <h1>Pembayaran</h1>
 
-    <a href="../index.php">Home</a> | 
-    <a href="../index.php">Kembali</a>
     <br/><br/>
 
     <table border="1px" width="70%">

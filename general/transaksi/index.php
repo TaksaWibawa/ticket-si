@@ -38,7 +38,7 @@ if (!isset($_SESSION['username'])) {
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
-                    <a class="nav-link active" aria-current="page" href="#">Beranda</a>
+                    <a class="nav-link active" aria-current="page" href="<?= SITE_URL ?>/index.php">Beranda</a>
                     <a class="nav-link" href="#">Event Trending</a>
                     <?php if (isset($_SESSION['username'])) : ?>
                         <a class="nav-link" href="<?php
@@ -123,7 +123,7 @@ if (!isset($_SESSION['username'])) {
     <div class="container mt-3 pt-1 py-5">
         <div class="row">
             <div class="col-12">
-                <h3>Ticket Price</h3>
+                <h3>Lihat Tiket Lainnya</h3>
             </div>
             <div class="col-lg-8 col-md-12 ">
                 <?php
