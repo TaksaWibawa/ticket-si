@@ -34,7 +34,7 @@ $qty_up = $query->fetch_assoc();
                 echo "<p class='card-description'> Jumlah Tiket Gold" . str_repeat('&nbsp;', 2) . ": " . $rows['up_gold'] . "</p>";
                 echo "<div class='card-footer'>";
                 echo "<span class='card-price'>Harga : Rp" . $rows['harga'] . "</span>";
-                echo "<a href='./beli.php?id=" . $rows['id_paket'] . "' class='card-button'>Pilih Paket</a>";
+                echo "<a href='paket/beli.php?id=" . $rows['id_paket'] . "' class='card-button'>Pilih Paket</a>";
                 echo "</div>";
                 echo "</div>";
             endwhile;

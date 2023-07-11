@@ -74,11 +74,16 @@ if (!isset($_SESSION['username'])) {
     </div>
   </div>
   <div id="alert-msg" class="alert-msg" aria-disabled="true"></div>
+  <a href="https://api.whatsapp.com/send?phone=6287781390370" class="whatsapp-button" target="_blank">
+    <div class="whatsapp-logo">
+      <img src="../../assets/img/whatsapp.png" alt="WhatsApp Logo">
+      <div class="chat-circle"></div>
+    </div>
+  </a>
   <script src="js/tiket.js"></script>
   <script src="js/dashboard.js"></script>
   <script src="js/searchBar.js"></script>
   <script src="js/img-preview.js"></script>
   <script src="js/alert.js"></script>
 </body>
-
 </html>

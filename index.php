@@ -4,7 +4,7 @@ require_once "./config/Database.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- https://api.whatsapp.com/send?phone=6287781390370 -->
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -290,14 +290,31 @@ require_once "./config/Database.php";
         </div>
     </footer>
     <!-- End Footer -->
+
+    <!-- WhatsApp Button -->
+    <a href="https://api.whatsapp.com/send?phone=6287781390370" class="whatsapp-button" target="_blank">
+      <div class="whatsapp-logo">
+        <img src="assets/img/whatsapp.png" alt="WhatsApp Logo">
+        <div class="chat-circle"></div>
+      </div>
+    </a>
+
     <div id="success-msg" class="success-msg" aria-disabled="true"></div>
-
-
 
     <!--JS BOOTSTRAP-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="general/js/success.js"></script>
     <!--END JS BOOTSTRAP-->
 </body>
+<script>
+        // Show WhatsApp button after the alert disappears
+        setTimeout(function() {
+            var whatsappButton = document.querySelector('.whatsapp-button');
+            whatsappButton.style.display = 'flex';
+            setTimeout(function() {
+                whatsappButton.style.opacity = '1';
+            }, 100);
+        }, 5000);
+</script>
 
 </html>

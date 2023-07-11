@@ -35,6 +35,7 @@ if (!isset($_SESSION['username'])) {
                     <th>Qty</th>
                     <th>Harga</th>
                     <th>Tanggal Beli</th>
+                    <th>ID Pengguna</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,6 +50,7 @@ if (!isset($_SESSION['username'])) {
                         <td><?= $rows['qty'] ?></td>
                         <td><?= $rows['harga'] ?></td>
                         <td><?= $rows['tanggal_beli'] ?></td>
+                        <td><?= $rows['id_pengguna'] ?></td>
                     </tr>
                 <?php endwhile; ?>
             </tbody>

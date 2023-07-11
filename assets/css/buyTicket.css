@@ -99,7 +99,7 @@ input[type="submit"]:hover {
 .alert {
   opacity: 0;
   position: fixed;
-  bottom: 20px;
+  top: 20px;
   right: 20px;
   padding: 20px 60px;
   background-color: #116d5f;

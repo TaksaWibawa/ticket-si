@@ -50,7 +50,7 @@ $qty_up = $query->fetch_assoc();
         </table>
         <br />
 
-        <form action="proses/create.php" method="post" enctype="multipart/form-data" role="form">
+        <form action="paket/proses/create.php" method="post" enctype="multipart/form-data" role="form">
             <input type="hidden" name="id_paket" value="<?= $_GET['id'] ?>">
             <input type="hidden" name="harga" value="<?= $harga ?>">
             <label for="bayar">Bayar:</label>
